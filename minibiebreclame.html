@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minibiebreclame. Daphne van der Zee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* ═══════════════════════════════════════
+     STAP 3 — LIVE IFRAME VAN DE WEBSITE
+     ═══════════════════════════════════════ */
+  .site-live {
+    max-width: 1100px;
+    margin: 40px auto 0;
+  }
+  .site-live__frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #1a1a1a;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,.35);
+  }
+  .site-live__bar {
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 36px;
+    background: #0f0f0f;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    display: flex; align-items: center;
+    padding: 0 14px; gap: 8px; z-index: 2;
+  }
+  .site-live__dot {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.12);
+  }
+  .site-live__url {
+    margin-left: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,.55);
+    letter-spacing: .02em;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .site-live__url::before {
+    content: "🔒";
+    font-size: 10px; opacity: .7;
+  }
+  .site-live__scroll {
+    position: absolute; top: 36px; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: calc(100% - 36px);
+    overflow-y: auto;
+    background: #fff;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212,160,23,.4) transparent;
+  }
+  .site-live__scroll::-webkit-scrollbar { width: 8px; }
+  .site-live__scroll::-webkit-scrollbar-track { background: transparent; }
+  .site-live__scroll::-webkit-scrollbar-thumb {
+    background: rgba(212,160,23,.4);
+    border-radius: 4px;
+  }
+  .site-live__scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(212,160,23,.7);
+  }
+  .site-live__scroll img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .site-live__link-wrap {
+    text-align: center;
+  }
+  .site-live__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 32px;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: rgba(255,255,255,.9);
+    background: transparent;
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all .3s ease;
+  }
+  .site-live__link:hover {
+    background: rgba(212,160,23,.1);
+    border-color: rgba(212,160,23,.8);
+    transform: translateY(-1px);
+  }
+
+  /* ═══════════════════════════════════════
+     STAP 4 — INSTAGRAM GRID ALS 1 BEELD
+     ═══════════════════════════════════════ */
+  .ig-grid-image {
+    max-width: 720px;
+    margin: 40px auto 0;
+  }
+  .ig-grid-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .ig-footer {
+    text-align: center;
+    margin-top: 40px;
+  }
+  .ig-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,.9);
+    border: 1px solid rgba(212,160,23,.4);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: all .3s ease;
+  }
+  .ig-footer a:hover {
+    background: rgba(212,160,23,.1);
+    border-color: rgba(212,160,23,.8);
+    transform: translateY(-1px);
+  }
+
+  /* Brand toolkit beeld */
+  .toolkit-image {
+    max-width: 1100px;
+    margin: 40px auto 0;
+  }
+  .toolkit-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .site-live__frame { aspect-ratio: 3 / 4; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav__back">Terug naar portfolio</a>
+  <div class="nav__name">Daphne van der Zee</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__label">Project 09 · Eigen onderneming</div>
+  <h1 class="hero__title">Mini<em>bieb</em><br>reclame.</h1>
+  <p class="hero__intro">
+    Een <em>hyperlokaal</em> advertentieplatform op mini-bibliotheken in de buurt. Het concept is van mijn partner Midas, die het van nul opbouwde. Mijn rol: het merk, de website, het digitale ecosysteem en alle visuele uitingen.
+  </p>
+</section>
+
+<!-- META -->
+<div class="meta">
+  <div>
+    <div class="meta__label">Type</div>
+    <div class="meta__value">Eigen onderneming</div>
+  </div>
+  <div>
+    <div class="meta__label">Mijn rol</div>
+    <div class="meta__value">Brand · Web · Visual system</div>
+  </div>
+  <div>
+    <div class="meta__label">Periode</div>
+    <div class="meta__value">2026, heden</div>
+  </div>
+  <div>
+    <div class="meta__label">Status</div>
+    <div class="meta__value">Live</div>
+  </div>
+</div>
+
+<!-- INTRO STATEMENT -->
+<section class="section">
+  <h2 class="section__title" style="max-width:780px;margin:80px auto 0;text-align:center;font-size:32px">
+    Ik heb Midas' idee vertaald naar een <em>merk</em>, een <em>platform</em>, en een <em>visueel systeem</em> dat leesbaar is voor bewoners, adverteerders én gemeentes.
+  </h2>
+  <p class="section__text" style="text-align:center;max-width:680px;margin:32px auto 0;color:rgba(255,255,255,.65)">
+    Vier stappen — van eerste beeld tot het ecosysteem zoals het nu draait.
+  </p>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STAP 01 — ANIMATIE · HENKS JOURNEY
+     ═══════════════════════════════════════════ -->
+<section class="step">
+  <div class="step__meta">
+    <span class="step__num">01</span>
+    <span class="step__cat">Animatie</span>
+  </div>
+  <h2 class="step__title">De <em>merkfilm</em>.</h2>
+  <p class="step__text">
+    Henk's Journey — hoe een buurtbewoner zijn eerste minibieb in de straat zet. Een korte film die toont waar het allemaal om draait: niet het advertentiepaneel, maar de mens die 'm ophangt.
+  </p>
+
+  <div class="video-hero" style="margin-top:40px">
+    <div class="video-hero__inner" style="aspect-ratio:16/9;max-width:1100px;margin:0 auto">
+      <video class="video-hero__video" controls autoplay muted loop playsinline poster="images/09-mbr-herman-poster.jpg">
+        <source src="videos/09-mbr-herman-journey.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STAP 02 — BRAND TOOLKIT
+     ═══════════════════════════════════════════ -->
+<section class="step">
+  <div class="step__meta">
+    <span class="step__num">02</span>
+    <span class="step__cat">Toolkit</span>
+  </div>
+  <h2 class="step__title">Het <em>systeem</em>.</h2>
+  <p class="step__text">
+    Niet één logo. Een set beslissingen die samen het merk dragen. Logo, kleurpalet, typografie, stem. Elke post, elke poster, elke pagina begint hier.
+  </p>
+
+  <div class="toolkit-image">
+    <figure class="step__figure" style="margin:0">
+      <img src="images/09-mbr-toolkit.jpg" alt="MBR brand toolkit — logo, palet, typografie en stem">
+      <figcaption class="step__figcap" style="text-align:center;margin-top:24px">De toolkit. Vier beslissingen die samen het merk dragen.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STAP 03 — WEBSITE (LIVE IFRAME)
+     ═══════════════════════════════════════════ -->
+<section class="step">
+  <div class="step__meta">
+    <span class="step__num">03</span>
+    <span class="step__cat">Platform</span>
+  </div>
+  <h2 class="step__title">Een <em>webshop</em>, geen folder.</h2>
+  <p class="step__text">
+    Minibiebreclame.nl is geen one-pager. Het is een volledig platform met iDEAL-betaling, een locatie-checker met tier-systeem, profielpagina's voor ondernemers en aanmeldformulieren voor eigenaren én bedrijven. Ontworpen zodat bewoners, adverteerders en gemeentes allemaal op de juiste plek landen.
+  </p>
+
+  <div class="site-live">
+    <div class="site-live__frame">
+      <div class="site-live__bar">
+        <div class="site-live__dot"></div>
+        <div class="site-live__dot"></div>
+        <div class="site-live__dot"></div>
+        <div class="site-live__url">minibiebreclame.nl</div>
+      </div>
+      <div class="site-live__scroll">
+        <img src="images/09-mbr-web-fullpage.jpg" alt="Scroll door minibiebreclame.nl">
+      </div>
+    </div>
+
+    <div class="site-live__link-wrap">
+      <a href="https://minibiebreclame.nl" target="_blank" rel="noopener" class="site-live__link">
+        Bekijk de live site op minibiebreclame.nl
+        <span>↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     STAP 04 — INSTAGRAM GRID (1 BEELD)
+     ═══════════════════════════════════════════ -->
+<section class="step">
+  <div class="step__meta">
+    <span class="step__num">04</span>
+    <span class="step__cat">In de wereld</span>
+  </div>
+  <h2 class="step__title">Verhalen, geen <em>advertenties</em>.</h2>
+  <p class="step__text">
+    De content is nooit reclame-achtig. Eén beeld, één moment, geen slogans. Drie typografische tegels op een diagonaal — opener, hart, handtekening. Zes foto's die samen het verhaal van maker, buurt en gebruiker vertellen. Het merk spreekt als een buurtbewoner, niet als een agency.
+  </p>
+
+  <!-- Instagram grid als 1 geëxporteerd beeld -->
+  <div class="ig-grid-image">
+    <figure class="step__figure" style="margin:0">
+      <img src="images/09-mbr-ig-grid.jpg" alt="Minibiebreclame Instagram feed — 9 tegels">
+      <figcaption class="step__figcap" style="text-align:center;margin-top:24px">De eerste negen. Een merkmanifest in drie rijen.</figcaption>
+    </figure>
+  </div>
+
+  <div class="ig-footer">
+    <a href="https://www.instagram.com/minibiebreclame" target="_blank" rel="noopener">
+      @minibiebreclame
+      <span>↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- SLOT -->
+<section class="section">
+  <div class="section__header">
+    <div class="section__num">Waarom dit project</div>
+    <h2 class="section__title">Design is niet wat je <em>krijgt.</em> Het is wat je <em>bouwt.</em></h2>
+  </div>
+  <p class="section__text">
+    Dit is het werk dat ik doe als er geen opdrachtgever is. Als bewijs dat ik niet alleen uitvoer wat anderen bedenken, maar ook zelfstandig een merk en ecosysteem kan opbouwen rondom iemand anders' idee. Dat maakt me geen "betere designer". Maar het maakt wel dat ik <em>weet hoe het hele plaatje werkt.</em>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <h2 class="footer__big">Iets <em>groots</em> te bouwen?</h2>
+  <p class="footer__sub">
+    Ondernemerschap, product, merk. Ik denk graag mee vanaf nul.
+  </p>
+  <a href="mailto:daphne.zee@live.nl" class="footer__cta">
+    Neem contact op
+    <span style="transition:transform .3s">→</span>
+  </a>
+  <a href="index.html" class="footer__back">← Terug naar alle projecten</a>
+</footer>
+
+</body>
+</html>
